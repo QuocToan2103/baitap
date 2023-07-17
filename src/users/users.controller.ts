@@ -1,5 +1,8 @@
-import { Controller, Delete, Get, NotFoundException, Param } from "@nestjs/common";
+import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put } from "@nestjs/common";
 import { UsersService } from "./users.service";
+import { CreateUserDto } from "./dto/createUser.dto";
+import { UpdateUserDto } from "./dto/updateUser.dto";
+import { User } from "./users.entity";
 
 @Controller('user')
 
@@ -22,8 +25,17 @@ export class UsersController {
     }
   
     @Delete(':id')
-    async remove(@Param() params) {
-      await this.usersService.remove(params.id);
-      return { message: 'User deleted' };
+    async deleteUser(@Param('id') id: number): Promise<void> {
+      await this.usersService.remove(id);
+    }
+
+    @Post()
+    async createUser(@Body() createUserDto: CreateUserDto) {
+      return await this.usersService.create(createUserDto);
+    }
+
+    @Put(':id')
+    async updateUser(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
+      return await this.usersService.update(id, updateUserDto);
     }
 }

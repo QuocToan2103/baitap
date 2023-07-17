@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ActivityUser } from 'src/activity_user/activityUser.entity';
+import { Group } from 'src/group/group.entity';
 import { User } from 'src/users/users.entity';
 @Module({
     imports: [TypeOrmModule.forRoot({
@@ -10,7 +11,7 @@ import { User } from 'src/users/users.entity';
         username: 'root',
         password: '',
         database: 'testnode',
-        entities: [User,ActivityUser],
+        entities: [User,ActivityUser,Group],
         synchronize: true,
       })],
     exports: [TypeOrmModule],
