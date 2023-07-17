@@ -10,7 +10,7 @@ export class ActivityUser {
     user: User;
 
     @Column()
-    change: string;
+    activityName: string;
 
     @Column()
     oldData: string;
@@ -20,10 +20,14 @@ export class ActivityUser {
 
     @Column()
     detailsChange: string;
+
+    @Column()
+    relation: string;
     
     @Column()
     created_at: Date;
 
     @Column()
     updated_at: Date;
+  
 }
